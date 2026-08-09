@@ -76,7 +76,7 @@ func main() {
 			// Count Total Characters
 			totalCharCount := CountChars(fileContents)
 
-			formattedResult := fmt.Sprintf("    %d %s", totalCharCount, filePathGiven)
+			formattedResult := fmt.Sprintf("   %d %s", totalCharCount, filePathGiven)
 
 			fmt.Println(formattedResult)
 		default:

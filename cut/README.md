@@ -48,6 +48,7 @@ Part of this Coding challenge: https://codingchallenges.fyi/challenges/challenge
   - With a file name:
 
   ```terminal
+  $ go build cut.go
   $ ./cut -f2 test-data/sample.tsv
   ```
 
@@ -58,12 +59,14 @@ Part of this Coding challenge: https://codingchallenges.fyi/challenges/challenge
   - With a file name:
 
   ```terminal
+  $ go build cut.go
   $ ./cut -f2 -d, test-data/fourchords.csv
   ```
 
   You can pipe the output to stdout as such:
 
   ```terminal
+  $ go build cut.go
   $ ./cut -f2 -d, test-data/fourchords.csv | head -n5
   ```
 

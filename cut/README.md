@@ -27,7 +27,7 @@ Part of this Coding challenge: https://codingchallenges.fyi/challenges/challenge
 4. Build the Go Binary:
 
    ```terminal
-   $ go build cmd/cli/main.go
+   $ go build cmd/cli/cut.go
    ```
 
 5. Two test files are supplied in the `test-data/` folder to use as inputs/examples.
@@ -48,7 +48,7 @@ Part of this Coding challenge: https://codingchallenges.fyi/challenges/challenge
   - With a file name:
 
   ```terminal
-  $ go build cmd/cli/main.go
+  $ go build cmd/cli/cut.go
   $ ./cut -f2 test-data/sample.tsv
   ```
 
@@ -59,14 +59,14 @@ Part of this Coding challenge: https://codingchallenges.fyi/challenges/challenge
   - With a file name:
 
   ```terminal
-  $ go build cmd/cli/main.go
+  $ go build cmd/cli/cut.go
   $ ./cut -f2 -d, test-data/fourchords.csv
   ```
 
   You can pipe the output to stdout as such:
 
   ```terminal
-  $ go build cmd/cli/main.go
+  $ go build cmd/cli/cut.go
   $ ./cut -f2 -d, test-data/fourchords.csv | head -n5
   ```
 

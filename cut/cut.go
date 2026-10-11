@@ -26,7 +26,7 @@ func main() {
 	var filePath string
 
 	if len(userArgsGiven) > 1 {
-		filePath = userArgsGiven[len(userArgsGiven) - 1]
+		filePath = userArgsGiven[len(userArgsGiven)-1]
 	}
 
 	fileExists := CheckFileExists(filePath)
@@ -47,7 +47,7 @@ func main() {
 		fNumsList := reNumsOnly.FindAllString(userArgsGiven[0], -1)
 		fieldNum, err := strconv.ParseInt(fNumsList[0], 10, 32)
 
-		if err != nil {	
+		if err != nil {
 			fmt.Println("There was an error with the field number provided with the -f flag")
 
 			return
@@ -79,21 +79,21 @@ func main() {
 }
 
 func CutHelpMessage() string {
-	var cutMessage string;
+	var cutMessage string
 
 	cutMessage += "usage: "
 
-	cutMessage += "	cut -f list [-d delim]"
+	cutMessage += "	cut -f list [-d delim] [file ...]"
 
 	return cutMessage
 }
 
-func CheckFileExists (filePath string) bool {
+func CheckFileExists(filePath string) bool {
 	if _, err := os.Stat(filePath); err == nil {
-        return true
-    } else if os.IsNotExist(err) {
-        return false
-    }
+		return true
+	} else if os.IsNotExist(err) {
+		return false
+	}
 
 	return false
 }
@@ -110,37 +110,37 @@ func PrintBySpecifiedField(filePath string, fieldNum int, delimiterChar string) 
 
 	file, err := os.Open(filePath)
 
-    if err != nil {
+	if err != nil {
 		errMsg := fmt.Sprintf("cut: %v: Error opening file", err)
-		
-        return -1, errMsg
-    }
+
+		return -1, errMsg
+	}
 
 	var textToReturn string
 
-    defer file.Close()
+	defer file.Close()
 	scanner := bufio.NewScanner(file)
 
-    for scanner.Scan() {
-        line := scanner.Text()
+	for scanner.Scan() {
+		line := scanner.Text()
 
-        fields := strings.Split(line, delimiterChar)
+		fields := strings.Split(line, delimiterChar)
 
-        if fieldNum > len(fields) {
+		if fieldNum > len(fields) {
 			textToReturn += fmt.Sprintln(" ")
 
-            continue
-        }
+			continue
+		}
 
-		line = fmt.Sprintln(fields[fieldNum - 1])
-        textToReturn += line
-    }
+		line = fmt.Sprintln(fields[fieldNum-1])
+		textToReturn += line
+	}
 
-    if err := scanner.Err(); err != nil {
+	if err := scanner.Err(); err != nil {
 		errMsg := fmt.Sprintf("cut: %v: Error opening file", err)
-		
-        return -1, errMsg
-    }
+
+		return -1, errMsg
+	}
 
 	finalString := strings.Trim(textToReturn, "\n")
 

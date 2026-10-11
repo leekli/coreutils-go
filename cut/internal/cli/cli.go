@@ -1,15 +1,16 @@
-package main
+package cli
 
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
-func main() {
+func Run(args []string, stdout, stderr io.Writer) int {
 	// Retrieve any args given by the user not incl. file name (which is arg 0)
 	userArgsGiven := os.Args[1:]
 
@@ -19,7 +20,7 @@ func main() {
 
 		fmt.Println(cutMessage)
 
-		return
+		return 1
 	}
 
 	// Get the file path/name given as the final argument and check it exists, exit if not
@@ -34,7 +35,7 @@ func main() {
 	if !fileExists {
 		fmt.Printf("cut: %v: No such file or directory\n", filePath)
 
-		return
+		return 1
 	}
 
 	var fieldToPrint int
@@ -50,7 +51,7 @@ func main() {
 		if err != nil {
 			fmt.Println("There was an error with the field number provided with the -f flag")
 
-			return
+			return 1
 		}
 
 		fieldToPrint = int(fieldNum)
@@ -76,6 +77,8 @@ func main() {
 	}
 
 	fmt.Println(returnMessage)
+
+	return 0
 }
 
 func CutHelpMessage() string {

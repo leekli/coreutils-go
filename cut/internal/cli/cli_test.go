@@ -1,4 +1,4 @@
-package main
+package cli
 
 import (
 	"strings"
@@ -32,11 +32,11 @@ import (
 */
 
 // Tab test file
-var correctTestFile string = "test-data/sample.tsv"
+var correctTestFile string = "../../test-data/sample.tsv"
 var fakeTestFile string = "fake-folder/fake-file.tsv"
 
 // Comma test file
-var correctTestCommaFile string = "test-data/fourchords.csv"
+var correctTestCommaFile string = "../../test-data/fourchords.csv"
 
 // Pipe test file
 //var correcTestPipeFile string = "test-data/sample.psv"

@@ -27,13 +27,13 @@ Part of this Coding challenge: https://codingchallenges.fyi/challenges/challenge
 4. Build the Go Binary:
 
    ```terminal
-   $ go build cut.go
+   $ go build cmd/cli/main.go
    ```
 
 5. Two test files are supplied in the `test-data/` folder to use as inputs/examples.
 
 > [!NOTE]
-> There is a test suite available and can be ran using `go test -v`
+> There is a test suite available and can be ran using `go test -v ./...`
 
 ## 💻 Commands & Options available
 
@@ -48,26 +48,26 @@ Part of this Coding challenge: https://codingchallenges.fyi/challenges/challenge
   - With a file name:
 
   ```terminal
-  $ go build cut.go
+  $ go build cmd/cli/main.go
   $ ./cut -f2 test-data/sample.tsv
   ```
 
-<br></br>
+<br>
 
 - **-d [file_name]:** Use delim as the field delimiter character instead of the tab character.
 
   - With a file name:
 
   ```terminal
-  $ go build cut.go
+  $ go build cmd/cli/main.go
   $ ./cut -f2 -d, test-data/fourchords.csv
   ```
 
   You can pipe the output to stdout as such:
 
   ```terminal
-  $ go build cut.go
+  $ go build cmd/cli/main.go
   $ ./cut -f2 -d, test-data/fourchords.csv | head -n5
   ```
 
-<br></br>
+<br>

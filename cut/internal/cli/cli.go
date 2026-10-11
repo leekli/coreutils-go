@@ -3,14 +3,13 @@ package cli
 import (
 	"bufio"
 	"fmt"
-	"io"
 	"os"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
-func Run(args []string, stdout, stderr io.Writer) int {
+func Run(args []string) int {
 	// Retrieve any args given by the user not incl. file name (which is arg 0)
 	userArgsGiven := os.Args[1:]
 

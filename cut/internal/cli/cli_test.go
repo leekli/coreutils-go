@@ -78,7 +78,7 @@ func TestPrintBySpecifiedField_ReturnsErrorIfFieldNumIsZero_WithDefaultTabDelimi
 
 	code, output := PrintBySpecifiedField(filePath, fieldNum, "\t")
 
-	if code != -1 {
+	if code != 1 {
 		test.Errorf("Expected: -1, Received: %d", code)
 	}
 
@@ -91,7 +91,7 @@ func TestPrintBySpecifiedField_ReturnsErrorIfFieldNumIsZero_WithDefaultTabDelimi
 
 	code, output = PrintBySpecifiedField(filePath, fieldNum, "")
 
-	if code != -1 {
+	if code != 1 {
 		test.Errorf("Expected: -1, Received: %d", code)
 	}
 
@@ -106,7 +106,7 @@ func TestPrintBySpecifiedField_ReturnsErrorIfFieldPathIsInvalid_WithDefaultTabDe
 
 	code, output := PrintBySpecifiedField(filePath, fieldNum, "\t")
 
-	if code != -1 {
+	if code != 1 {
 		test.Errorf("Expected: -1, Received: %d", code)
 	}
 

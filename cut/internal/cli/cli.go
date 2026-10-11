@@ -20,7 +20,7 @@ func Run(args []string, stdout, stderr io.Writer) int {
 
 		fmt.Println(cutMessage)
 
-		return 1
+		return 2
 	}
 
 	// Get the file path/name given as the final argument and check it exists, exit if not
@@ -35,7 +35,7 @@ func Run(args []string, stdout, stderr io.Writer) int {
 	if !fileExists {
 		fmt.Printf("cut: %v: No such file or directory\n", filePath)
 
-		return 1
+		return 2
 	}
 
 	var fieldToPrint int
@@ -72,7 +72,7 @@ func Run(args []string, stdout, stderr io.Writer) int {
 
 	returnCode, returnMessage := PrintBySpecifiedField(filePath, fieldToPrint, delimiterToUse)
 
-	if returnCode < 0 {
+	if returnCode == 1 {
 		fmt.Println(returnMessage)
 	}
 
@@ -108,7 +108,7 @@ func PrintBySpecifiedField(filePath string, fieldNum int, delimiterChar string) 
 	}
 
 	if fieldNum == 0 {
-		return -1, "cut: values may not include zero\n"
+		return 1, "cut: values may not include zero\n"
 	}
 
 	file, err := os.Open(filePath)
@@ -116,10 +116,10 @@ func PrintBySpecifiedField(filePath string, fieldNum int, delimiterChar string) 
 	if err != nil {
 		errMsg := fmt.Sprintf("cut: %v: Error opening file", err)
 
-		return -1, errMsg
+		return 1, errMsg
 	}
 
-	var textToReturn string
+	var textToReturn strings.Builder
 
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
@@ -130,22 +130,22 @@ func PrintBySpecifiedField(filePath string, fieldNum int, delimiterChar string) 
 		fields := strings.Split(line, delimiterChar)
 
 		if fieldNum > len(fields) {
-			textToReturn += fmt.Sprintln(" ")
+			textToReturn.WriteString(" ")
 
 			continue
 		}
 
 		line = fmt.Sprintln(fields[fieldNum-1])
-		textToReturn += line
+		textToReturn.WriteString(line)
 	}
 
 	if err := scanner.Err(); err != nil {
 		errMsg := fmt.Sprintf("cut: %v: Error opening file", err)
 
-		return -1, errMsg
+		return 1, errMsg
 	}
 
-	finalString := strings.Trim(textToReturn, "\n")
+	finalString := strings.Trim(textToReturn.String(), "\n")
 
 	return 0, finalString
 }
